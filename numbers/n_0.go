@@ -1,5 +1,5 @@
 components {
-  id: "enemy"
+  id: "number"
   component: "/numbers/number.script"
   position {
     x: 0.0
@@ -64,12 +64,12 @@ embedded_components {
 embedded_components {
   id: "collisionobject"
   type: "collisionobject"
-  data: "collision_shape: \"/background.tilemap\"\n"
+  data: "collision_shape: \"\"\n"
   "type: COLLISION_OBJECT_TYPE_TRIGGER\n"
   "mass: 0.0\n"
   "friction: 0.0\n"
   "restitution: 0.5\n"
-  "group: \"default\"\n"
+  "group: \"number\"\n"
   "mask: \"default\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"
@@ -88,7 +88,7 @@ embedded_components {
   "    index: 0\n"
   "    count: 1\n"
   "  }\n"
-  "  data: 10.0\n"
+  "  data: 7.5\n"
   "}\n"
   "linear_damping: 0.0\n"
   "angular_damping: 0.0\n"

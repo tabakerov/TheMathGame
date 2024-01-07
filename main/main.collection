@@ -20,71 +20,11 @@ instances {
   }
 }
 instances {
-  id: "n_0"
-  prototype: "/numbers/n_0.go"
+  id: "number_factory"
+  prototype: "/main/number_factory.go"
   position {
-    x: 89.0
-    y: 80.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
-  id: "n_2"
-  prototype: "/numbers/n_2.go"
-  position {
-    x: 66.0
-    y: 194.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
-  id: "n_5"
-  prototype: "/numbers/n_5.go"
-  position {
-    x: 163.0
-    y: 90.0
-    z: 0.0
-  }
-  rotation {
-    x: 0.0
-    y: 0.0
-    z: 0.0
-    w: 1.0
-  }
-  scale3 {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-}
-instances {
-  id: "n_1"
-  prototype: "/numbers/n_1.go"
-  position {
-    x: 134.0
-    y: 154.0
+    x: 107.0
+    y: 89.0
     z: 0.0
   }
   rotation {
