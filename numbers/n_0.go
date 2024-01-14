@@ -69,7 +69,7 @@ embedded_components {
   "mass: 0.0\n"
   "friction: 0.0\n"
   "restitution: 0.5\n"
-  "group: \"number\"\n"
+  "group: \"default\"\n"
   "mask: \"default\"\n"
   "embedded_collision_shape {\n"
   "  shapes {\n"

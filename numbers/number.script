@@ -2,6 +2,7 @@ go.property("value", 0)
 go.property("speed_m", 50)
 
 function init(self)
+	self.w, self.h = window.get_size()
 	self.speed_m = self.speed_m / (1 + self.value)
 	self.speed = vmath.vector3(math.random(-1 * self.speed_m, 1 * self.speed_m), math.random(-1 * self.speed_m, 1 * self.speed_m), 0)
 	label.set_text("#label", self.value)
@@ -14,8 +15,20 @@ function final(self)
 end
 
 function update(self, dt)
+	if self.value < 1 then
+		print("im smol")
+		go.delete(self.id)
+	end
+	if self.value > 9 then
+		print("IM BIG")
+		data = { position = go.get_position(), value = self.value }
+		msg.post(msg.url(nil, "number_factory", "number_factory"), "spawn", data)
+		go.delete()
+	end
 	local pos = go.get_position()
 	pos = pos + self.speed * dt
+	pos.x = pos.x % self.w
+	pos.y = pos.y % self.h
 	go.set_position(pos)
 end
 
@@ -29,27 +42,26 @@ function fixed_update(self, dt)
 end
 
 function on_message(self, message_id, message, sender)
-	print(message_id)
 	if message_id == hash("trigger_response") then
 		if message.enter then
-			-- take action for entry
-			print("I am now inside", message.other_id)
-			print(message.other_id)
-			if message.other_id == hash("/bg") then -- edge of the world collision
-				local pos = go.get_position()
-				print("ok!")
-				if pos.x < 100 or pos.x > 200 then
-					self.speed.x = -1 * self.speed.x
-				elseif pos.y < 100 or pos.y > 200 then
-					self.speed.y = -1 * self.speed.y
-				end
-			elseif message.other_group == hash("number") then
-				print("other group:", message.other_group)
-			end
+			
+			
 		else
 			-- take action for exit
-			print("I am now outside", message.other_id)
 		end
+	elseif message_id == hash("exchange") then
+		self.value = self.value + message.value
+		self.speed = message.speed
+		label.set_text("#label", self.value)
+	elseif message_id == hash("collision_response") then
+		url = msg.url(nil, message.other_id, "number")
+		over_value = go.get(url, "value")
+		rnd = math.random(1, self.value)
+		
+		data = { value = rnd, speed = self.speed, orig_value =  self.value }
+		msg.post(message.other_id, "exchange", data)
+		self.value = self.value - rnd
+		label.set_text("#label", self.value)
 	end
 end
 
